@@ -1,20 +1,28 @@
 <template>
   <div class="container">
     <Header />
+    <Books @delete-book="deleteBook" :books="books" />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Books from "./components/Books";
 export default {
   name: "App",
   components: {
     Header,
+    Books,
   },
   data() {
     return {
       books: [],
     };
+  },
+  methods: {
+    deleteBook(id) {
+      console.log("book", id);
+    },
   },
   created() {
     this.books = [
@@ -37,10 +45,11 @@ export default {
         name: "Don Kixot",
         auth: "Servantes",
         pages: 400,
-        reminder: true,
+        reminder: false,
       },
     ];
   },
+  emits: ["delete-book"],
 };
 </script>
 
