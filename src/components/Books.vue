@@ -1,6 +1,10 @@
 <template>
   <div :key="book.id" v-for="book in books">
-    <Book @delete-book="$emit('delete-book', book.id)" :book="book" />
+    <Book
+      @toggle-reminder="$emit('toggle-reminder', book.id)"
+      @delete-book="$emit('delete-book', book.id)"
+      :book="book"
+    />
   </div>
 </template>
 
@@ -14,6 +18,6 @@ export default {
   components: {
     Book,
   },
-  emits: ["delete-book"],
+  emits: ["delete-book", "toggle-reminder"],
 };
 </script>

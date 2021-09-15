@@ -1,8 +1,11 @@
 <template>
-  <div :class="[book.reminder ? 'reminder' : '', 'book']">
+  <div
+    @dblclick="$emit('toggle-reminder', book.id)"
+    :class="[book.reminder ? 'reminder' : '', 'book']"
+  >
     <h3>
       {{ book.name }}
-      <i @click="onDelete(book.id)" class="fas fa-times"></i>
+      <i @click="$emit('delete-book', book.id)" class="fas fa-times"></i>
     </h3>
     <p>{{ book.auth }}</p>
   </div>
@@ -13,11 +16,6 @@ export default {
   name: "Book",
   props: {
     book: Object,
-  },
-  methods: {
-    onDelete(id) {
-      this.$emit("delete-book", id);
-    },
   },
 };
 </script>

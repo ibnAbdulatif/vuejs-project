@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     onClick() {
-      alert("Hello Vue");
+      this.$emit("toggle-add-book");
     },
   },
 };

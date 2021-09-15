@@ -1,29 +1,54 @@
 <template>
   <div class="container">
-    <Header />
-    <Books @delete-book="deleteBook" :books="books" />
+    <Header
+      @toggle-add-book="toggleAddBook"
+      title="Add Book"
+      :showAddBook="showAddBook"
+    />
+    <div v-if="showAddBook">
+      <AddBook @add-book="addBook" />
+    </div>
+    <Books
+      @toggle-reminder="toggleReminder"
+      @delete-book="deleteBook"
+      :books="books"
+    />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
 import Books from "./components/Books";
+import AddBook from "./components/AddBook";
 export default {
   name: "App",
   components: {
     Header,
     Books,
+    AddBook,
   },
   data() {
     return {
       books: [],
+      showAddBook: false,
     };
   },
   methods: {
+    toggleAddBook() {
+      this.showAddBook = !this.showAddBook;
+    },
+    addBook(book) {
+      this.books = [...this.books, book];
+    },
     deleteBook(id) {
       if (confirm("Are you delete this Book")) {
         this.books = this.books.filter((book) => book.id !== id);
       }
+    },
+    toggleReminder(id) {
+      this.books = this.books.map((book) =>
+        book.id === id ? { ...book, reminder: !book.reminder } : book
+      );
     },
   },
   created() {
@@ -32,21 +57,18 @@ export default {
         id: 1,
         name: "O`tgan kunlar",
         auth: "Abdulla Qodiriy",
-        pages: 280,
         reminder: true,
       },
       {
         id: 2,
         name: "Bolalik",
         auth: "Oybek",
-        pages: 210,
         reminder: true,
       },
       {
         id: 3,
         name: "Don Kixot",
         auth: "Servantes",
-        pages: 400,
         reminder: false,
       },
     ];

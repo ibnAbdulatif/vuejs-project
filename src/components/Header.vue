@@ -1,7 +1,11 @@
 <template>
   <header>
-    <h1>Hello World</h1>
-    <Button text="Add text" color="green" />
+    <h1>{{ title }}</h1>
+    <Button
+      @toggle-add-book="$emit('toggle-add-book')"
+      :text="showAddBook ? 'Close' : 'Add'"
+      color="green"
+    />
   </header>
 </template>
 
@@ -9,6 +13,10 @@
 import Button from "./Button";
 export default {
   name: "Header",
+  props: {
+    title: String,
+    showAddBook: Boolean,
+  },
   components: {
     Button,
   },
