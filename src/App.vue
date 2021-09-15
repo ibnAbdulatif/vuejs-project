@@ -21,7 +21,9 @@ export default {
   },
   methods: {
     deleteBook(id) {
-      console.log("book", id);
+      if (confirm("Are you delete this Book")) {
+        this.books = this.books.filter((book) => book.id !== id);
+      }
     },
   },
   created() {
@@ -49,7 +51,6 @@ export default {
       },
     ];
   },
-  emits: ["delete-book"],
 };
 </script>
 

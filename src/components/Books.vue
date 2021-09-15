@@ -14,5 +14,6 @@ export default {
   components: {
     Book,
   },
+  emits: ["delete-book"],
 };
 </script>
