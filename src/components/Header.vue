@@ -4,7 +4,7 @@
     <Button
       @toggle-add-book="$emit('toggle-add-book')"
       :text="showAddBook ? 'Close' : 'Add'"
-      color="green"
+      :color="showAddBook ? 'crimson' : 'green'"
     />
   </header>
 </template>
