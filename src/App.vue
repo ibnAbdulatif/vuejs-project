@@ -11,6 +11,36 @@ export default {
   components: {
     Header,
   },
+  data() {
+    return {
+      books: [],
+    };
+  },
+  created() {
+    this.books = [
+      {
+        id: 1,
+        name: "O`tgan kunlar",
+        auth: "Abdulla Qodiriy",
+        pages: 280,
+        reminder: true,
+      },
+      {
+        id: 2,
+        name: "Bolalik",
+        auth: "Oybek",
+        pages: 210,
+        reminder: true,
+      },
+      {
+        id: 3,
+        name: "Don Kixot",
+        auth: "Servantes",
+        pages: 400,
+        reminder: true,
+      },
+    ];
+  },
 };
 </script>
 
